@@ -1,7 +1,7 @@
-let ApiRoots = 'http://localhost:8017' // Default API root
+let ApiRoots = 'http://localhost:8000' // Default API root
 
 if (import.meta.env.VITE_BUILD_MODE === 'dev') {
-  ApiRoots = 'http://localhost:8017'
+  ApiRoots = 'http://localhost:8000'
 } else if (import.meta.env.VITE_BUILD_MODE === 'production') {
   ApiRoots = 'https://api.vblog.xyz' // Placeholder or fallback
 }

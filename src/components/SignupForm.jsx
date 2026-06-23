@@ -23,10 +23,10 @@ export function SignupForm({ className, ...props }) {
   const handleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
 
   const handleSubmitForm = async (data) => {
+    console.log("🚀 ~ handleSubmitForm ~ data:", data)
     if (isSubmitting) return
-    const { email, password } = data
     await toast.promise(
-      registerUserAPI({ email, password }),
+      registerUserAPI(data),
       { pending: 'Creating Account ....' },
       { position: 'bottom-right' }
     ).then(() => {
@@ -118,7 +118,7 @@ export function SignupForm({ className, ...props }) {
                     id="confirm-password"
                     placeholder="••••••••"
                     className="pl-10 pr-10 bg-slate-950/30 border-slate-800 text-slate-200 placeholder:text-slate-500 focus-visible:border-indigo-500/80 focus-visible:ring-indigo-500/20 rounded-xl transition-all h-10"
-                    {...register('confirmPassword', {
+                    {...register('confirm_password', {
                       required: FIELD_REQUIRED_MESSAGE,
                       validate: value => {
                         if (value === getValues('password')) return true
@@ -134,7 +134,7 @@ export function SignupForm({ className, ...props }) {
                     {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
-                {errors.confirmPassword && <FieldErrorAlert errorMessage={errors.confirmPassword.message} />}
+                {errors.confirm_password && <FieldErrorAlert errorMessage={errors.confirm_password.message} />}
               </Field>
 
               {/* submit */}

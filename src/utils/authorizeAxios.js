@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { interceptorLoadingElements } from './formatters'
-import { logoutUserAPI } from '~/redux/user/userSlice'
+import { logoutUser, logoutUserAPI } from '~/redux/user/userSlice'
 import { refreshTokenAPI } from '~/apis'
 
 let axiosReduxStore
@@ -35,6 +35,12 @@ authorizedAxiosInstance.interceptors.response.use(
     return response
   },
   (error) => {
+    // Nếu request bị lỗi chính là request logout hoặc refresh, chặn vòng lặp vô hạn và xoá local state luôn
+    if (error.config?.url?.includes('/users/logout') || error.config?.url?.includes('/users/refresh')) {
+      axiosReduxStore.dispatch(logoutUser())
+      return Promise.reject(error)
+    }
+
     // Case 1: Status code is 401 (Unauthorized) -> logout user
     if (error.response?.status === 401) {
       axiosReduxStore.dispatch(logoutUserAPI(false))
@@ -50,7 +56,7 @@ authorizedAxiosInstance.interceptors.response.use(
             return data?.accessToken
           })
           .catch((err) => {
-            axiosReduxStore.dispatch(logoutUserAPI(false))
+            axiosReduxStore.dispatch(logoutUser())
             return Promise.reject(err)
           })
           .finally(() => {
@@ -65,10 +71,18 @@ authorizedAxiosInstance.interceptors.response.use(
 
     interceptorLoadingElements(false)
 
+    // let errorMessage = error.message
+    // if (error.response?.data?.message) {
+    //   errorMessage = error.response.data.message
+    // }
+
     let errorMessage = error.message
-    if (error.response?.data?.message) {
+    if (error.response?.data?.error) {
+      errorMessage = error.response.data.error
+    } else if (error.response?.data?.message) {
       errorMessage = error.response.data.message
     }
+
     
     // Toast error (ignore status 410 which is handled silently)
     if (error.response?.status !== 410) {

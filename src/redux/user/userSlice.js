@@ -11,7 +11,7 @@ const initialState = {
 export const loginUserAPI = createAsyncThunk(
   'user/loginUserAPI',
   async (data) => {
-    const response = await authorizedAxiosInstance.post(`${API_ENDPOINT}/v1/users/login`, data)
+    const response = await authorizedAxiosInstance.post(`${API_ENDPOINT}/api/v1/users/authenticate`, data)
     return response.data
   }
 )
@@ -19,7 +19,7 @@ export const loginUserAPI = createAsyncThunk(
 export const logoutUserAPI = createAsyncThunk(
   'user/logoutUserAPI',
   async (showSuccessMessage = true) => {
-    const response = await authorizedAxiosInstance.delete(`${API_ENDPOINT}/v1/users/logout`)
+    const response = await authorizedAxiosInstance.delete(`${API_ENDPOINT}/api/v1/users/logout`)
     if (showSuccessMessage) {
       toast.success('Logged out successfully!', { position: 'bottom-right' })
     }
@@ -39,15 +39,19 @@ export const updateUserProfileAPI = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      state.currentUser = null
+    }
+  },
   extraReducers: (builder) => {
     // login
     builder.addCase(loginUserAPI.fulfilled, (state, action) => {
       state.currentUser = action.payload
     })
     // logout
-    builder.addCase(logoutUserAPI.fulfilled, (state) => {
-      state.currentUser = null
+    builder.addCase(logoutUserAPI.fulfilled, () => {
+      return initialState
     })
     // update profile
     builder.addCase(updateUserProfileAPI.fulfilled, (state, action) => {
@@ -55,6 +59,8 @@ export const userSlice = createSlice({
     })
   }
 })
+
+export const { logoutUser } = userSlice.actions
 
 // Selector
 export const selectCurrentUser = (state) => state.user.currentUser
