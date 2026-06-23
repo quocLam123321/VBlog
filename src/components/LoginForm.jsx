@@ -92,11 +92,11 @@ export function LoginForm({ className, ...props }) {
                     placeholder="••••••••"
                     className="pl-10 pr-10 bg-slate-950/30 border-slate-800 text-slate-200 placeholder:text-slate-500 focus-visible:border-indigo-500/80 focus-visible:ring-indigo-500/20 rounded-xl transition-all h-10"
                     {...register('password', {
-                      required: FIELD_REQUIRED_MESSAGE,
-                      pattern: {
-                        value: PASSWORD_RULE,
-                        message: PASSWORD_RULE_MESSAGE
-                      }
+                      // required: FIELD_REQUIRED_MESSAGE,
+                      // pattern: {
+                      //   value: PASSWORD_RULE,
+                      //   message: PASSWORD_RULE_MESSAGE
+                      // }
                     })}
                   />
                   <button
