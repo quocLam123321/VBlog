@@ -1,11 +1,11 @@
-import { useLocation } from 'react-router-dom'
-import { LoginForm } from '~/components/LoginForm'
-import { SignupForm } from '~/components/SignupForm'
+import { useLocation } from "react-router-dom";
+import { LoginForm } from "~/components/LoginForm";
+import { SignupForm } from "~/components/SignupForm";
 
-const Auth = () => {
-  const location = useLocation()
-  const isLogin = location.pathname === '/auth/login'
-  const isRegister = location.pathname === '/auth/register'
+const AuthPage = () => {
+  const location = useLocation();
+  const isLogin = location.pathname === "/auth/login";
+  const isRegister = location.pathname === "/auth/register";
 
   return (
     <div className="flex min-h-screen w-screen flex-col items-center justify-center bg-[#0b0f19] p-4 relative overflow-hidden select-none">
@@ -18,7 +18,7 @@ const Auth = () => {
         {isRegister && <SignupForm />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Auth
+export default AuthPage;
