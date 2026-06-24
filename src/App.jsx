@@ -1,6 +1,12 @@
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import Auth from './pages/Auth/Auth'
 import Home from './pages/Home'
+import ListPage from './pages/ListPage'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import PostDetail from './pages/PostDetail'
+import Admin from './pages/Admin'
+import MainLayout from './components/Layout/MainLayout'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from './redux/user/userSlice'
 import AccountVerification from './pages/Auth/AccountVerification'
@@ -26,12 +32,22 @@ function App() {
   
   return (
     <Routes>
-      {/* Routes được bảo vệ */}
-      <Route element={<ProtectedRoute currentUser={currentUser} />}>
+      {/* Các route sử dụng Layout chung (Header & Footer) */}
+      <Route element={<MainLayout />}>
+        {/* Các trang công khai cho mọi người */}
         <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<ListPage />} />
+        <Route path="/posts/:id" element={<PostDetail />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+
+        {/* Các trang yêu cầu đăng nhập và dùng chung Layout */}
+        <Route element={<ProtectedRoute currentUser={currentUser} />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
       </Route>
       
-      {/* Routes công khai cho khách */}
+      {/* Routes công khai cho khách (Không dùng Layout chung) */}
       <Route element={<PublicRoute currentUser={currentUser} />}>
         <Route path="/auth/login" element={<Auth />} />
         <Route path="/auth/register" element={<Auth />} />
