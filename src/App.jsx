@@ -47,12 +47,12 @@ function App() {
       <Route element={<MainLayout />}>
         {/* Tuyến đường bảo vệ */}
         <Route element={<ProtectedRoute currentUser={currentUser} />}>
-          <Route path="/" element={<HomePage />} />
 
           {/* 2. ĐƯA ROUTE ADMIN VÀO ĐÂY */}
           <Route path="/admin" element={<AdminPage />} />
         </Route>
 
+        <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/posts/:id" element={<PostDetailPage />} />
         <Route path="/posts" element={<PostsPage />} />
