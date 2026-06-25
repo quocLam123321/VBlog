@@ -14,31 +14,33 @@ import AuthPage from "./pages/Auth/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import PostDetailPage from "./pages/PostDetail";
 
+
+// Protected Route: Yêu cầu đăng nhập mới được truy cập các Route bên trong
+const ProtectedRoute = ({ currentUser }) => {
+  if (!currentUser) {
+    return <Navigate to="/auth/login" replace={true} />;
+  }
+  return <Outlet />;
+};
+
+
+// const ProtectedRoute = () => {
+//   return <Outlet />;
+// };
+
+// Public Route: Đã đăng nhập rồi thì không cho quay lại trang đăng nhập/đăng ký
+const PublicRoute = ({ currentUser }) => {
+  if (currentUser) {
+    return <Navigate to="/" replace={true} />;
+  }
+  return <Outlet />;
+};
+// const PublicRoute = () => {
+//   return <Outlet />;
+// };
+
 function App() {
   const currentUser = useSelector(selectCurrentUser);
-
-  // Protected Route: Yêu cầu đăng nhập mới được truy cập các Route bên trong
-  // const ProtectedRoute = ({ currentUser }) => {
-  //   if (!currentUser) {
-  //     return <Navigate to="/auth/login" replace={true} />;
-  //   }
-  //   return <Outlet />;
-  // };
-
-  const ProtectedRoute = () => {
-    return <Outlet />;
-  };
-
-  // Public Route: Đã đăng nhập rồi thì không cho quay lại trang đăng nhập/đăng ký
-  // const PublicRoute = ({ currentUser }) => {
-  //   if (currentUser) {
-  //     return <Navigate to="/" replace={true} />;
-  //   }
-  //   return <Outlet />;
-  // };
-  const PublicRoute = () => {
-    return <Outlet />;
-  };
 
   return (
     <Routes>
