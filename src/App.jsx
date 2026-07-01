@@ -5,7 +5,7 @@ import { selectCurrentUser } from "./redux/user/userSlice";
 import MainLayout from "./components/layouts/MainLayout";
 
 import AccountVerification from "./pages/Auth/AccountVerification";
-import AdminPage from "./pages/Admin";
+import AdminPage from "./pages/Admin/Admin";
 import PostsPage from "./pages/Posts";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
@@ -13,7 +13,11 @@ import HomePage from "./pages/Home";
 import AuthPage from "./pages/Auth/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import PostDetailPage from "./pages/PostDetail";
-
+import AdminLayout from "./components/layouts/AdminLayout";
+import AdminPostsPage from "./pages/Admin/Posts";
+import AdminCommentsPage from "./pages/Admin/Comments";
+import AdminSettingPage from "./pages/Admin/Settings";
+import AdminUsersPage from "./pages/Admin/Users";
 
 // Protected Route: Yêu cầu đăng nhập mới được truy cập các Route bên trong
 const ProtectedRoute = ({ currentUser }) => {
@@ -22,7 +26,6 @@ const ProtectedRoute = ({ currentUser }) => {
   }
   return <Outlet />;
 };
-
 
 // const ProtectedRoute = () => {
 //   return <Outlet />;
@@ -44,13 +47,18 @@ function App() {
 
   return (
     <Routes>
-      <Route element={<MainLayout />}>
-        {/* Tuyến đường bảo vệ */}
-        <Route element={<ProtectedRoute currentUser={currentUser} />}>
-
+      <Route element={<AdminLayout />}>
+        <Route element={<ProtectedRoute />}>
           {/* 2. ĐƯA ROUTE ADMIN VÀO ĐÂY */}
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/posts" element={<AdminPostsPage />} />
+          <Route path="/admin/users" element={<AdminUsersPage />} />
+          <Route path="/admin/comments" element={<AdminCommentsPage />} />
+          <Route path="/admin/settings" element={<AdminSettingPage />} />
         </Route>
+      </Route>
+      <Route element={<MainLayout />}>
+        {/* Tuyến đường bảo vệ */}
 
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />

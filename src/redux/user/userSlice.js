@@ -1,71 +1,79 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { API_ENDPOINT } from '~/utils/constants'
-import authorizedAxiosInstance from '~/utils/authorizeAxios'
-import { toast } from 'react-toastify'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_ENDPOINT } from "~/utils/constants";
+import authorizedAxiosInstance from "~/utils/authorizeAxios";
+import { toast } from "react-toastify";
 
 const initialState = {
-  currentUser: null
-}
+  currentUser: null,
+};
 
 // Thunks
 export const loginUserAPI = createAsyncThunk(
-  'user/loginUserAPI',
+  "user/loginUserAPI",
   async (data) => {
-    const response = await authorizedAxiosInstance.post(`${API_ENDPOINT}/api/v1/users/authenticate`, data)
-    return response.data
-  }
-)
+    const response = await authorizedAxiosInstance.post(
+      `${API_ENDPOINT}/api/v1/users/authenticate`,
+      data,
+    );
+    return response.data;
+  },
+);
 
 export const logoutUserAPI = createAsyncThunk(
-  'user/logoutUserAPI',
+  "user/logoutUserAPI",
   async (showSuccessMessage = true) => {
-    const response = await authorizedAxiosInstance.delete(`${API_ENDPOINT}/api/v1/users/logout`)
+    const response = await authorizedAxiosInstance.delete(
+      `${API_ENDPOINT}/api/v1/users/logout`,
+    );
     if (showSuccessMessage) {
-      toast.success('Logged out successfully!', { position: 'bottom-right' })
+      toast.success("Logged out successfully!", { position: "bottom-right" });
     }
-    return response.data
-  }
-)
+    return response.data;
+  },
+);
 
 export const updateUserProfileAPI = createAsyncThunk(
-  'user/updateUserProfileAPI',
+  "user/updateUserProfileAPI",
   async (data) => {
-    const response = await authorizedAxiosInstance.post(`${API_ENDPOINT}/api/v1/users/update`, data)
-    return response.data
-  }
-)
+    const response = await authorizedAxiosInstance.post(
+      `${API_ENDPOINT}/api/v1/users/update`,
+      data,
+    );
+    return response.data;
+  },
+);
 
 // User Slice
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     logoutUser: (state) => {
-      state.currentUser = null
-    }
+      state.currentUser = null;
+    },
   },
   extraReducers: (builder) => {
     // login
     builder.addCase(loginUserAPI.fulfilled, (state, action) => {
-      state.currentUser = action.payload
-    })
+      state.currentUser = action.payload;
+    });
     // logout
     builder.addCase(logoutUserAPI.fulfilled, () => {
-      return initialState
-    })
+      return initialState;
+    });
     // update profile
     builder.addCase(updateUserProfileAPI.fulfilled, (state, action) => {
-      state.currentUser = action.payload
-    })
-  }
-})
+      state.currentUser = action.payload;
+    });
+  },
+});
 
-export const { logoutUser } = userSlice.actions
+export const { logoutUser } = userSlice.actions;
 
 // Selector
-export const selectCurrentUser = (state) => state.user.currentUser
+export const selectCurrentUser = (state) => state.user.currentUser;
 
-export const userReducer = userSlice.reducer
+export const userReducer = userSlice.reducer;
 
 // import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import { API_ENDPOINT } from "~/utils/constants";
