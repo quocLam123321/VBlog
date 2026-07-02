@@ -1,62 +1,59 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "~/redux/user/userSlice";
-import { testAuthAPI } from "~/apis";
-import { toast } from "react-toastify";
-import { Eye, FileText, Plus, ShieldCheck, ChevronRight } from "lucide-react";
+import { useState } from 'react'
+import { testAuthAPI } from '~/apis'
+import { toast } from 'react-toastify'
+import { Eye, FileText, Plus, ShieldCheck, ChevronRight } from 'lucide-react'
 
 function AdminPage() {
-  const currentUser = useSelector(selectCurrentUser);
-  const [testResult, setTestResult] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [testResult, setTestResult] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const handleTestAuth = async () => {
-    setLoading(true);
-    setTestResult(null);
+    setLoading(true)
+    setTestResult(null)
     try {
-      const data = await testAuthAPI();
-      setTestResult({ status: "Success", data: data });
-      toast.success("Xác thực API thành công!");
+      const data = await testAuthAPI()
+      setTestResult({ status: 'Success', data: data })
+      toast.success('Xác thực API thành công!')
     } catch (error) {
       setTestResult({
-        status: "Error",
-        message: error.response?.data?.error || error.message,
-      });
-      toast.error("Lỗi xác thực API!");
+        status: 'Error',
+        message: error.response?.data?.error || error.message
+      })
+      toast.error('Lỗi xác thực API!')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const adminPosts = [
     {
       id: 1,
-      title: "The Architecture of Silence in Modern Prose",
-      author: "E. Rutherford",
+      title: 'The Architecture of Silence in Modern Prose',
+      author: 'E. Rutherford',
       authorAvatar:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80",
-      date: "Oct 24, 2023",
-      status: "Published",
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80',
+      date: 'Oct 24, 2023',
+      status: 'Published'
     },
     {
       id: 2,
-      title: "Review: The Weight of Ink",
-      author: "J. Mitchell",
+      title: 'Review: The Weight of Ink',
+      author: 'J. Mitchell',
       authorAvatar:
-        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80",
-      date: "Oct 22, 2023",
-      status: "Draft",
+        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80',
+      date: 'Oct 22, 2023',
+      status: 'Draft'
     },
     {
       id: 3,
-      title: "Revisiting the Classics: A 21st Century...",
-      author: "A. Admin",
+      title: 'Revisiting the Classics: A 21st Century...',
+      author: 'A. Admin',
       authorAvatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
-      date: "Oct 18, 2023",
-      status: "Published",
-    },
-  ];
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
+      date: 'Oct 18, 2023',
+      status: 'Published'
+    }
+  ]
 
   return (
     // THAY ĐỔI: Sử dụng w-full min-h-screen để kéo giãn toàn bộ màn hình, p-4 lên p-6 hoặc p-10 tùy kích thước
@@ -81,7 +78,7 @@ function AdminPage() {
             className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#e7e3dc] hover:border-[#4a3b32] text-[#2c2520] rounded-xl transition-all cursor-pointer disabled:opacity-50 whitespace-nowrap"
           >
             <ShieldCheck className="w-4 h-4 text-[#704f38]" />
-            {loading ? "Testing..." : "Test Auth API"}
+            {loading ? 'Testing...' : 'Test Auth API'}
           </button>
           <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-[#4a3b32] hover:bg-[#382c25] text-white rounded-xl border-none transition-all cursor-pointer shadow-sm whitespace-nowrap">
             <Plus className="w-4 h-4" />
@@ -94,9 +91,9 @@ function AdminPage() {
       {testResult && (
         <div
           className={`p-4 rounded-xl border font-mono text-xs max-h-40 overflow-y-auto shadow-sm ${
-            testResult.status === "Success"
-              ? "bg-[#edf7ed] border-[#c8e6c9] text-[#2e7d32]"
-              : "bg-[#fdeded] border-[#f9d2d2] text-[#c62828]"
+            testResult.status === 'Success'
+              ? 'bg-[#edf7ed] border-[#c8e6c9] text-[#2e7d32]'
+              : 'bg-[#fdeded] border-[#f9d2d2] text-[#c62828]'
           }`}
         >
           <div className="font-bold mb-1">
@@ -204,9 +201,9 @@ function AdminPage() {
                   <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
                     <span
                       className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                        post.status === "Published"
-                          ? "bg-[#edf7ed] text-[#2e7d32]"
-                          : "bg-[#f5f1ea] text-[#70655d]"
+                        post.status === 'Published'
+                          ? 'bg-[#edf7ed] text-[#2e7d32]'
+                          : 'bg-[#f5f1ea] text-[#70655d]'
                       }`}
                     >
                       {post.status}
@@ -224,7 +221,7 @@ function AdminPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminPage;
+export default AdminPage

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   Search,
   Filter,
@@ -8,37 +8,36 @@ import {
   Reply,
   MessageSquare,
   ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-} from "lucide-react";
+  ChevronRight
+} from 'lucide-react'
 
 function AdminCommentsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Dữ liệu mẫu (Mock data) dựa chính xác theo hình ảnh bạn gửi
   const mockComments = [
     {
       id: 1,
-      author: "Eleanor Vance",
+      author: 'Eleanor Vance',
       avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
-      date: "October 24, 2023",
-      postTitle: "The Architectural Solitude of Modern Fiction",
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
+      date: 'October 24, 2023',
+      postTitle: 'The Architectural Solitude of Modern Fiction',
       content:
-        "This piece perfectly captures the sense of isolation prevalent in contemporary narratives. The comparison to Brutalist structures is particularly striking—it gives physical weight to the emotional void the characters inhabit. Brilliant analysis.",
-      status: "Pending",
+        'This piece perfectly captures the sense of isolation prevalent in contemporary narratives. The comparison to Brutalist structures is particularly striking—it gives physical weight to the emotional void the characters inhabit. Brilliant analysis.',
+      status: 'Pending'
     },
     {
       id: 2,
-      author: "Thomas Hardy",
-      initials: "T",
-      date: "October 23, 2023",
-      postTitle: "Rediscovering the Pastoral Elegy",
+      author: 'Thomas Hardy',
+      initials: 'T',
+      date: 'October 23, 2023',
+      postTitle: 'Rediscovering the Pastoral Elegy',
       content:
-        "While I agree with the author's premise regarding the romanticization of rural landscapes, I feel they overlooked the underlying socioeconomic critiques embedded in the later stanzas. It's not merely an aesthetic longing, but a pointed commentary on industrial encroachment.",
-      status: "Approved",
-    },
-  ];
+        'While I agree with the author\'s premise regarding the romanticization of rural landscapes, I feel they overlooked the underlying socioeconomic critiques embedded in the later stanzas. It\'s not merely an aesthetic longing, but a pointed commentary on industrial encroachment.',
+      status: 'Approved'
+    }
+  ]
 
   return (
     <div className="w-full min-h-screen p-4 sm:p-6 lg:p-10 flex flex-col gap-8 box-border">
@@ -105,14 +104,14 @@ function AdminCommentsPage() {
 
               <div
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                  comment.status === "Pending"
-                    ? "bg-white text-[#a08e81] border border-[#e7e3dc]"
-                    : "bg-[#edf7ed] text-[#2e7d32]"
+                  comment.status === 'Pending'
+                    ? 'bg-white text-[#a08e81] border border-[#e7e3dc]'
+                    : 'bg-[#edf7ed] text-[#2e7d32]'
                 }`}
               >
-                {comment.status === "Pending" ? (
+                {comment.status === 'Pending' ? (
                   <>
-                    <div className="w-1 h-1 rounded-full bg-[#a08e81]" />{" "}
+                    <div className="w-1 h-1 rounded-full bg-[#a08e81]" />{' '}
                     Pending
                   </>
                 ) : (
@@ -146,7 +145,7 @@ function AdminCommentsPage() {
                 <Trash2 className="w-3.5 h-3.5" /> Delete
               </button>
 
-              {comment.status === "Pending" ? (
+              {comment.status === 'Pending' ? (
                 <>
                   <button className="flex items-center gap-1.5 text-xs font-bold text-[#70655d] hover:text-[#2c2520] transition-colors bg-transparent border-none cursor-pointer uppercase tracking-widest">
                     <AlertOctagon className="w-3.5 h-3.5" /> Spam
@@ -179,7 +178,7 @@ function AdminCommentsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminCommentsPage;
+export default AdminCommentsPage

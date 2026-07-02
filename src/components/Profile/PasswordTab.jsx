@@ -1,51 +1,51 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateUserProfileAPI } from "~/redux/user/userSlice";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
-import { Button } from "~/components/ui/button";
-import { toast } from "react-toastify";
-import { Key, Eye, EyeOff } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateUserProfileAPI } from '~/redux/user/userSlice'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import { Button } from '~/components/ui/button'
+import { toast } from 'react-toastify'
+import { Key, Eye, EyeOff } from 'lucide-react'
+import { useForm } from 'react-hook-form'
 import {
   FIELD_REQUIRED_MESSAGE,
   PASSWORD_RULE,
   PASSWORD_RULE_MESSAGE,
-  PASSWORD_CONFIRMATION_MESSAGE,
-} from "~/utils/validators";
-import { FieldErrorAlert } from "~/components/FieldErrorAlert";
+  PASSWORD_CONFIRMATION_MESSAGE
+} from '~/utils/validators'
+import { FieldErrorAlert } from '~/components/FieldErrorAlert'
 
 export default function PasswordTab({ onClose }) {
-  const dispatch = useDispatch();
-  const [loadingPassword, setLoadingPassword] = useState(false);
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch()
+  const [loadingPassword, setLoadingPassword] = useState(false)
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm();
+    reset
+  } = useForm()
 
   const handleUpdatePassword = async (data) => {
-    setLoadingPassword(true);
+    setLoadingPassword(true)
     toast.promise(
       dispatch(updateUserProfileAPI({
         currentPassword: data.currentPassword,
-        newPassword: data.newPassword,
+        newPassword: data.newPassword
       })),
-      { pending: "Updating password..." }
+      { pending: 'Updating password...' }
     ).then((res) => {
       if (!res.error) {
-        toast.success("Password updated successfully!", { theme: "colored" });
-        reset();
+        toast.success('Password updated successfully!', { theme: 'colored' })
+        reset()
       }
     }).finally(() => {
-      setLoadingPassword(false);
-    });
-  };
+      setLoadingPassword(false)
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit(handleUpdatePassword)} className="space-y-4">
@@ -57,10 +57,10 @@ export default function PasswordTab({ onClose }) {
         <div className="relative">
           <Input
             id="currentPassword"
-            type={showCurrentPassword ? "text" : "password"}
+            type={showCurrentPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            {...register("currentPassword", {
-              required: FIELD_REQUIRED_MESSAGE,
+            {...register('currentPassword', {
+              required: FIELD_REQUIRED_MESSAGE
             })}
             className="border-[#e7e3dc] focus-visible:border-[#704f38] focus-visible:ring-[#704f38]/20 text-xs h-9 pr-10"
           />
@@ -85,17 +85,17 @@ export default function PasswordTab({ onClose }) {
         <div className="relative">
           <Input
             id="newPassword"
-            type={showNewPassword ? "text" : "password"}
+            type={showNewPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            {...register("newPassword", {
+            {...register('newPassword', {
               required: FIELD_REQUIRED_MESSAGE,
               pattern: {
                 value: PASSWORD_RULE,
-                message: PASSWORD_RULE_MESSAGE,
+                message: PASSWORD_RULE_MESSAGE
               },
               validate: (value, formValues) =>
                 value !== formValues.currentPassword ||
-                "Mật khẩu mới không được trùng với mật khẩu hiện tại!",
+                'Mật khẩu mới không được trùng với mật khẩu hiện tại!'
             })}
             className="border-[#e7e3dc] focus-visible:border-[#704f38] focus-visible:ring-[#704f38]/20 text-xs h-9 pr-10"
           />
@@ -120,13 +120,13 @@ export default function PasswordTab({ onClose }) {
         <div className="relative">
           <Input
             id="confirmPassword"
-            type={showConfirmPassword ? "text" : "password"}
+            type={showConfirmPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            {...register("confirmPassword", {
+            {...register('confirmPassword', {
               required: FIELD_REQUIRED_MESSAGE,
               validate: (value, formValues) =>
                 value === formValues.newPassword ||
-                PASSWORD_CONFIRMATION_MESSAGE,
+                PASSWORD_CONFIRMATION_MESSAGE
             })}
             className="border-[#e7e3dc] focus-visible:border-[#704f38] focus-visible:ring-[#704f38]/20 text-xs h-9 pr-10"
           />
@@ -159,9 +159,9 @@ export default function PasswordTab({ onClose }) {
           className="bg-[#704f38] hover:bg-[#5a3f2c] text-white text-xs h-9 px-4 rounded-xl cursor-pointer flex items-center gap-1.5"
         >
           <Key className="w-3.5 h-3.5" />
-          {loadingPassword ? "Đang cập nhật..." : "Cập nhật mật khẩu"}
+          {loadingPassword ? 'Đang cập nhật...' : 'Cập nhật mật khẩu'}
         </Button>
       </div>
     </form>
-  );
+  )
 }

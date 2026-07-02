@@ -1,7 +1,7 @@
-import FeaturedPost from "~/components/FeaturePost";
-import HeroSection from "~/components/HeroSection";
-import Newsletter from "~/components/NewsLetter";
-import RecentPosts from "~/components/RecentPosts";
+import FeaturedPost from '~/components/FeaturePost'
+import HeroSection from '~/components/HeroSection'
+import Newsletter from '~/components/NewsLetter'
+import RecentPosts from '~/components/RecentPosts'
 
 function HomePage() {
   return (
@@ -18,7 +18,7 @@ function HomePage() {
       {/* 4. Khối tương tác: Form Đăng ký nhận bản tin qua Email */}
       <Newsletter />
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

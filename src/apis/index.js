@@ -22,3 +22,8 @@ export const testAuthAPI = async () => {
   const response = await authorizedAxiosInstance.get(`${API_ENDPOINT}/api/v1/users/me`)
   return response.data
 }
+
+export const getUsersAPI = async (searchPath) => {
+  const response = await authorizedAxiosInstance.get(`${API_ENDPOINT}/api/v1/users${searchPath}`)
+  return response.data
+}
