@@ -1,41 +1,41 @@
-import { CalendarDays, Clock } from "lucide-react";
+import { CalendarDays, Clock } from 'lucide-react'
 // 1. Import thẻ Link từ thư viện react-router-dom
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 function RecentPosts() {
   // Mảng dữ liệu mẫu (Mock data)
   const posts = [
     {
       id: 1,
-      category: "CÔNG NGHỆ",
-      title: "Xây Dựng Giao Diện Người Dùng Tinh Tế Với CSS Hiện Đại",
+      category: 'CÔNG NGHỆ',
+      title: 'Xây Dựng Giao Diện Người Dùng Tinh Tế Với CSS Hiện Đại',
       excerpt:
-        "Khám phá cách CSS Nesting, biến và các thuộc tính layout mới nhất đang tái định nghĩa cách...",
-      date: "2026-06-18",
-      readingTime: "8 phút đọc",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+        'Khám phá cách CSS Nesting, biến và các thuộc tính layout mới nhất đang tái định nghĩa cách...',
+      date: '2026-06-18',
+      readingTime: '8 phút đọc',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085'
     },
     {
       id: 2,
-      category: "ĐỜI SỐNG",
-      title: "Đi Tìm Sự Yên Lặng Giữa Thế Giới Ồn Ào",
+      category: 'ĐỜI SỐNG',
+      title: 'Đi Tìm Sự Yên Lặng Giữa Thế Giới Ồn Ào',
       excerpt:
-        "Làm thế nào để thiết lập một không gian làm việc kỹ thuật số tối giản và tìm lại sự bình yên...",
-      date: "2026-06-15",
-      readingTime: "6 phút đọc",
-      image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7",
+        'Làm thế nào để thiết lập một không gian làm việc kỹ thuật số tối giản và tìm lại sự bình yên...',
+      date: '2026-06-15',
+      readingTime: '6 phút đọc',
+      image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7'
     },
     {
       id: 3,
-      category: "VIẾT LÁCH",
-      title: "Thói Quen Viết Morning Pages: Giải Phóng Sức Sáng Tạo",
+      category: 'VIẾT LÁCH',
+      title: 'Thói Quen Viết Morning Pages: Giải Phóng Sức Sáng Tạo',
       excerpt:
-        "Viết 3 trang giấy vào mỗi buổi sáng bằng tay là một phương pháp đơn giản nhưng hiệu quả bấ...",
-      date: "2026-06-10",
-      readingTime: "4 phút đọc",
-      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a",
-    },
-  ];
+        'Viết 3 trang giấy vào mỗi buổi sáng bằng tay là một phương pháp đơn giản nhưng hiệu quả bấ...',
+      date: '2026-06-10',
+      readingTime: '4 phút đọc',
+      image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a'
+    }
+  ]
 
   return (
     <section className="w-full max-w-6xl mx-auto px-6 py-10">
@@ -107,7 +107,7 @@ function RecentPosts() {
         ))}
       </div>
     </section>
-  );
+  )
 }
 
-export default RecentPosts;
+export default RecentPosts

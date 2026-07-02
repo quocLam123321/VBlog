@@ -1,5 +1,5 @@
 function AdminSettingPage() {
-  return <div>Admin setting page</div>;
+  return <div>Admin setting page</div>
 }
 
-export default AdminSettingPage;
+export default AdminSettingPage

@@ -1,26 +1,26 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser, logoutUserAPI } from "~/redux/user/userSlice";
-import { Search, Settings, ShieldAlert, LogOut, LogIn } from "lucide-react";
-import ProfileDialog from "./ProfileDialog";
-import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar";
+import { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentUser, logoutUserAPI } from '~/redux/user/userSlice'
+import { Search, Settings, ShieldAlert, LogOut, LogIn } from 'lucide-react'
+import ProfileDialog from './ProfileDialog'
+import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar'
 // Import Popover và các thành phần phụ trợ từ Headless UI
 import {
   Popover,
   PopoverButton,
   PopoverPanel,
-  Transition,
-} from "@headlessui/react";
+  Transition
+} from '@headlessui/react'
 
 function Header() {
-  const currentUser = useSelector(selectCurrentUser);
-  const dispatch = useDispatch();
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const currentUser = useSelector(selectCurrentUser)
+  const dispatch = useDispatch()
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
 
   const handleDropdownLogout = () => {
-    dispatch(logoutUserAPI());
-  };
+    dispatch(logoutUserAPI())
+  }
 
   return (
     <header className="border-b border-[#e7e3dc] bg-[#fdfbf7]/90 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
@@ -38,7 +38,7 @@ function Header() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? "text-[#2c2520] border-b border-[#2c2520]" : ""}`
+              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? 'text-[#2c2520] border-b border-[#2c2520]' : ''}`
             }
           >
             Home
@@ -46,7 +46,7 @@ function Header() {
           <NavLink
             to="/posts"
             className={({ isActive }) =>
-              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? "text-[#2c2520] border-b border-[#2c2520]" : ""}`
+              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? 'text-[#2c2520] border-b border-[#2c2520]' : ''}`
             }
           >
             Posts
@@ -54,7 +54,7 @@ function Header() {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? "text-[#2c2520] border-b border-[#2c2520]" : ""}`
+              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? 'text-[#2c2520] border-b border-[#2c2520]' : ''}`
             }
           >
             About
@@ -62,7 +62,7 @@ function Header() {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? "text-[#2c2520] border-b border-[#2c2520]" : ""}`
+              `pb-1 transition-colors hover:text-[#2c2520] no-underline ${isActive ? 'text-[#2c2520] border-b border-[#2c2520]' : ''}`
             }
           >
             Contact
@@ -96,7 +96,7 @@ function Header() {
                     className="w-full h-full object-cover"
                   />
                   <AvatarFallback className="bg-[#fdfbf7] text-[#70655d] text-xs font-bold flex items-center justify-center">
-                    {currentUser?.user?.user_name ? currentUser.user.user_name.charAt(0).toUpperCase() : "U"}
+                    {currentUser?.user?.user_name ? currentUser.user.user_name.charAt(0).toUpperCase() : 'U'}
                   </AvatarFallback>
                 </Avatar>
               </PopoverButton>
@@ -124,7 +124,7 @@ function Header() {
                         Tài khoản
                       </p>
                       <p className="text-xs font-semibold text-[#2c2520] truncate mt-0.5">
-                        {currentUser?.user?.user_name || "User"}
+                        {currentUser?.user?.user_name || 'User'}
                       </p>
                       <p className="text-[10px] text-[#70655d] truncate mt-0.5">
                         {currentUser?.user?.email}
@@ -142,7 +142,7 @@ function Header() {
                         Hồ sơ cá nhân
                       </button>
 
-                       {currentUser?.user?.role === 'admin' && (
+                      {currentUser?.user?.role === 'admin' && (
                         <Link
                           to="/admin"
                           className="flex items-center gap-3 px-5 py-2.5 hover:bg-[#fdfbf7] text-[#544941] no-underline transition-colors"
@@ -178,7 +178,7 @@ function Header() {
       </div>
       {isProfileOpen && <ProfileDialog open={isProfileOpen} onOpenChange={setIsProfileOpen} />}
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen } from 'lucide-react'
 
 function HeroSection() {
   return (
@@ -37,7 +37,7 @@ function HeroSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default HeroSection;
+export default HeroSection

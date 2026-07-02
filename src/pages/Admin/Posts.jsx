@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   FileText,
   Plus,
@@ -8,82 +8,80 @@ import {
   Trash2,
   Eye,
   ChevronLeft,
-  ChevronRight,
-  MoreVertical,
-} from "lucide-react";
+  ChevronRight
+} from 'lucide-react'
 
 function AdminPostsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('')
+  const [statusFilter, setStatusFilter] = useState('All')
 
   // Giả lập danh sách bài viết chi tiết hơn phục vụ cho quản trị
   const mockPosts = [
     {
       id: 1,
-      title: "The Architecture of Silence in Modern Prose",
-      category: "Văn học",
-      author: "E. Rutherford",
-      date: "Oct 24, 2023",
-      views: "12,450",
-      status: "Published",
+      title: 'The Architecture of Silence in Modern Prose',
+      category: 'Văn học',
+      author: 'E. Rutherford',
+      date: 'Oct 24, 2023',
+      views: '12,450',
+      status: 'Published'
     },
     {
       id: 2,
-      title: "Review: The Weight of Ink",
-      category: "Sách",
-      author: "J. Mitchell",
-      date: "Oct 22, 2023",
-      views: "3,120",
-      status: "Draft",
+      title: 'Review: The Weight of Ink',
+      category: 'Sách',
+      author: 'J. Mitchell',
+      date: 'Oct 22, 2023',
+      views: '3,120',
+      status: 'Draft'
     },
     {
       id: 3,
-      title: "Revisiting the Classics: A 21st Century Perspective",
-      category: "Phê bình",
-      author: "A. Admin",
-      date: "Oct 18, 2023",
-      views: "45,800",
-      status: "Published",
+      title: 'Revisiting the Classics: A 21st Century Perspective',
+      category: 'Phê bình',
+      author: 'A. Admin',
+      date: 'Oct 18, 2023',
+      views: '45,800',
+      status: 'Published'
     },
     {
       id: 4,
-      title: "Xây Dựng Giao Diện Người Dùng Tinh Tế Với CSS Hiện Đại",
-      category: "Công nghệ",
-      author: "A. Admin",
-      date: "Oct 15, 2023",
-      views: "8,940",
-      status: "Published",
+      title: 'Xây Dựng Giao Diện Người Dùng Tinh Tế Với CSS Hiện Đại',
+      category: 'Công nghệ',
+      author: 'A. Admin',
+      date: 'Oct 15, 2023',
+      views: '8,940',
+      status: 'Published'
     },
     {
       id: 5,
-      title: "Đi Tìm Sự Yên Lặng Giữa Thế Giới Ồn Ào",
-      category: "Đời sống",
-      author: "J. Mitchell",
-      date: "Oct 10, 2023",
-      views: "0",
-      status: "Draft",
+      title: 'Đi Tìm Sự Yên Lặng Giữa Thế Giới Ồn Ào',
+      category: 'Đời sống',
+      author: 'J. Mitchell',
+      date: 'Oct 10, 2023',
+      views: '0',
+      status: 'Draft'
     },
     {
       id: 6,
-      title: "Thói Quen Viết Morning Pages: Giải Phóng Sức Sáng Tạo",
-      category: "Viết lách",
-      author: "E. Rutherford",
-      date: "Oct 05, 2023",
-      views: "15,210",
-      status: "Published",
-    },
-  ];
+      title: 'Thói Quen Viết Morning Pages: Giải Phóng Sức Sáng Tạo',
+      category: 'Viết lách',
+      author: 'E. Rutherford',
+      date: 'Oct 05, 2023',
+      views: '15,210',
+      status: 'Published'
+    }
+  ]
 
   // Xử lý bộ lọc tìm kiếm & trạng thái
   const filteredPosts = mockPosts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.author.toLowerCase().includes(searchTerm.toLowerCase());
+      post.author.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus =
-      statusFilter === "All" || post.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
+      statusFilter === 'All' || post.status === statusFilter
+    return matchesSearch && matchesStatus
+  })
 
   return (
     <div className="w-full min-h-screen p-4 sm:p-6 lg:p-10 flex flex-col gap-6 box-border">
@@ -123,14 +121,14 @@ function AdminPostsPage() {
           <span className="text-[#a08e81] flex items-center gap-1 shrink-0 mr-1 hidden sm:flex">
             <Filter className="w-3.5 h-3.5" /> Status:
           </span>
-          {["All", "Published", "Draft"].map((status) => (
+          {['All', 'Published', 'Draft'].map((status) => (
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
               className={`px-3 py-1.5 rounded-lg border cursor-pointer transition-all whitespace-nowrap ${
                 statusFilter === status
-                  ? "bg-[#4a3b32] text-white border-[#4a3b32]"
-                  : "bg-[#fdfbf7] border-[#e7e3dc] text-[#70655d] hover:border-[#a08e81]"
+                  ? 'bg-[#4a3b32] text-white border-[#4a3b32]'
+                  : 'bg-[#fdfbf7] border-[#e7e3dc] text-[#70655d] hover:border-[#a08e81]'
               }`}
             >
               {status}
@@ -199,9 +197,9 @@ function AdminPostsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                          post.status === "Published"
-                            ? "bg-[#edf7ed] text-[#2e7d32]"
-                            : "bg-[#f5f1ea] text-[#70655d]"
+                          post.status === 'Published'
+                            ? 'bg-[#edf7ed] text-[#2e7d32]'
+                            : 'bg-[#f5f1ea] text-[#70655d]'
                         }`}
                       >
                         {post.status}
@@ -250,9 +248,9 @@ function AdminPostsPage() {
         {/* 4. FOOTER PHÂN TRANG (Pagination dành riêng cho trang Admin) */}
         <div className="px-4 sm:px-6 py-4 border-t border-[#f4f1eb] flex items-center justify-between font-sans text-xs font-semibold text-[#70655d]">
           <span className="hidden sm:inline">
-            Showing <span className="text-[#2c2520]">1</span> to{" "}
-            <span className="text-[#2c2520]">{filteredPosts.length}</span> of{" "}
-            <span className="text-[#2c2520]">{filteredPosts.length}</span>{" "}
+            Showing <span className="text-[#2c2520]">1</span> to{' '}
+            <span className="text-[#2c2520]">{filteredPosts.length}</span> of{' '}
+            <span className="text-[#2c2520]">{filteredPosts.length}</span>{' '}
             entries
           </span>
           <span className="sm:hidden">Page 1 of 1</span>
@@ -274,7 +272,7 @@ function AdminPostsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminPostsPage;
+export default AdminPostsPage

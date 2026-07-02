@@ -8,7 +8,7 @@ if (import.meta.env.VITE_BUILD_MODE === 'dev') {
 
 export const API_ENDPOINT = ApiRoots
 export const DEFAULT_PAGE = 1
-export const DEFAULT_ITEMS_PER_PAGE = 12
+export const DEFAULT_ITEMS_PER_PAGE = 5
 
 export const CARD_MEMBER_ACTIONS = {
   ADD: 'ADD',

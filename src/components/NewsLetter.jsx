@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { Mail } from 'lucide-react'
 
 function Newsletter() {
   return (
@@ -36,7 +36,7 @@ function Newsletter() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Newsletter;
+export default Newsletter

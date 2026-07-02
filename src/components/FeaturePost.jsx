@@ -1,4 +1,4 @@
-import { CalendarDays, Clock } from "lucide-react";
+import { CalendarDays, Clock } from 'lucide-react'
 
 function FeaturedPost() {
   return (
@@ -54,7 +54,7 @@ function FeaturedPost() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default FeaturedPost;
+export default FeaturedPost

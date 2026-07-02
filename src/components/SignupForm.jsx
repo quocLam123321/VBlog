@@ -23,7 +23,7 @@ export function SignupForm({ className, ...props }) {
   const handleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
 
   const handleSubmitForm = async (data) => {
-    console.log("🚀 ~ handleSubmitForm ~ data:", data)
+    console.log('🚀 ~ handleSubmitForm ~ data:', data)
     if (isSubmitting) return
     await toast.promise(
       registerUserAPI(data),

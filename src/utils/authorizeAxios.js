@@ -83,7 +83,7 @@ authorizedAxiosInstance.interceptors.response.use(
       errorMessage = error.response.data.message
     }
 
-    
+
     // Toast error (ignore status 410 which is handled silently)
     if (error.response?.status !== 410) {
       toast.error(errorMessage, {

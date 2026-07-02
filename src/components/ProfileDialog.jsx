@@ -3,15 +3,15 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
-} from "~/components/ui/dialog";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/tabs";
-import { User } from "lucide-react";
-import InfoTab from "~/components/Profile/InfoTab";
-import PasswordTab from "~/components/Profile/PasswordTab";
+  DialogTitle
+} from '~/components/ui/dialog'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '~/components/ui/tabs'
+import { User } from 'lucide-react'
+import InfoTab from '~/components/Profile/InfoTab'
+import PasswordTab from '~/components/Profile/PasswordTab'
 
 export default function ProfileDialog({ open, onOpenChange }) {
-  const handleClose = () => onOpenChange(false);
+  const handleClose = () => onOpenChange(false)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -54,5 +54,5 @@ export default function ProfileDialog({ open, onOpenChange }) {
         </Tabs>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
